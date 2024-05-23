@@ -21,7 +21,6 @@ resource "google_identity_platform_config" "default" {
 
   multi_tenant {
      allow_tenants = true
-     default_tenant_location = var.default_tenant_location
   }
     # phone_number {
     #     enabled = true
