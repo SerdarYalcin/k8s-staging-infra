@@ -55,7 +55,7 @@ resource "google_identity_platform_config" "default" {
 #     "my-project.firebaseapp.com",
 #     "my-project.web.app",
 #   ]
-# }
+ }
 
 resource "google_identity_platform_tenant" "tenant" {
   display_name          = "flexer-stage"
