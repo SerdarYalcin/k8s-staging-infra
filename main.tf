@@ -15,7 +15,8 @@ resource "google_identity_platform_config" "default" {
     email {
         enabled = true
         password_required = true
-    }}
+    }
+  }
     # phone_number {
     #     enabled = true
     #     test_phone_numbers = {
