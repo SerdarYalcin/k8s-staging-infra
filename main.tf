@@ -67,10 +67,3 @@ resource "google_identity_platform_tenant" "tenant" {
   allow_password_signup = true
 }
 
-resource "google_identity_platform_tenant_default_supported_idp_config" "email" {
-  project     = var.project_id
-  tenant      = google_identity_platform_tenant.tenant.name
-  provider_id = "password"
-  enabled     = true
-}
-
