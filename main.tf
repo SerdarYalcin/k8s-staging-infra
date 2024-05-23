@@ -58,11 +58,6 @@ resource "google_project_service" "identitytoolkit" {
 # #   ]
 #  }
 
-resource "google_identity_platform_tenant" "tenant" {
-  display_name          = "flexer-stage"
-  allow_password_signup = true
-}
-
 
 resource "google_identity_platform_config" "default" {
   project = var.project_id
