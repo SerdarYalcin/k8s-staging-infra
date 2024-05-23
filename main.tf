@@ -1,6 +1,5 @@
 resource "google_identity_platform_tenant" "flexer_stage" {
   project      = var.project_id
-  tenant_id    = var.tenant_name
   display_name = "Flexer Stage"
 }
 
@@ -18,32 +17,8 @@ resource "google_identity_platform_tenant_default_supported_idp_config" "email_l
   enabled    = true
 }
 
-resource "google_identity_platform_tenant_default_supported_idp_config" "custom_token" {
-  project    = var.project_id
-  tenant     = google_identity_platform_tenant.flexer_stage.name
-  provider_id = "custom"
-  enabled    = true
-}
-
-resource "google_identity_platform_tenant_default_supported_idp_config" "phone" {
-  project    = var.project_id
-  tenant     = google_identity_platform_tenant.flexer_stage.name
-  provider_id = "phone"
-  enabled    = false
-}
-
-resource "google_identity_platform_tenant_default_supported_idp_config" "anonymous" {
-  project    = var.project_id
-  tenant     = google_identity_platform_tenant.flexer_stage.name
-  provider_id = "anonymous"
-  enabled    = false
-}
-
-resource "google_identity_platform_tenant_config" "tenant_settings" {
+resource "google_identity_platform_project_default_config" "default_config" {
   project = var.project_id
-  tenant  = google_identity_platform_tenant.flexer_stage.name
-
-  allow_duplicate_emails = false
 
   sign_in {
     email {
@@ -51,14 +26,15 @@ resource "google_identity_platform_tenant_config" "tenant_settings" {
       password {
         enabled = true
       }
-      link_accounts {
-        action = "linkAccountsWithSameEmail"
-      }
     }
   }
 
-  user_account_management {
-    sign_up_allowed = true
-    delete_allowed  = true
+  user_management {
+    allow_sign_up = true
+    allow_delete  = true
+  }
+
+  linking {
+    link_accounts_with_same_email = true
   }
 }
