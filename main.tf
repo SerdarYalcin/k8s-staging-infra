@@ -23,7 +23,6 @@ resource "google_identity_platform_config" "default" {
      allow_tenants = true
      default_tenant_location = var.default_tenant_location
   }
-}
     # phone_number {
     #     enabled = true
     #     test_phone_numbers = {
@@ -62,7 +61,7 @@ resource "google_identity_platform_config" "default" {
 #     "my-project.firebaseapp.com",
 #     "my-project.web.app",
 #   ]
- }
+}
 
 resource "google_identity_platform_tenant" "tenant" {
   display_name          = "flexer-stage"
