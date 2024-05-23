@@ -1,8 +1,8 @@
-resource "google_project_service" "identitytoolkit" {
-  project = var.project_id
-  service = "identitytoolkit.googleapis.com"
-  disable_on_destroy = true
-}
+# resource "google_project_service" "identitytoolkit" {
+#   project = var.project_id
+#   service = "identitytoolkit.googleapis.com"
+#   disable_on_destroy = true
+# }
 
 resource "google_identity_platform_config" "default" {
   project = var.project_id
