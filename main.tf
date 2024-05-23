@@ -6,21 +6,16 @@ resource "google_identity_platform_tenant" "flexer_stage" {
 resource "google_identity_platform_tenant_default_supported_idp_config" "email" {
   project    = var.project_id
   tenant     = google_identity_platform_tenant.flexer_stage.name
-  provider_id = "password"
+  provider   = "password"
   enabled    = true
 }
 
-resource "google_identity_platform_tenant_default_supported_idp_config" "email_link" {
-  project    = var.project_id
-  tenant     = google_identity_platform_tenant.flexer_stage.name
-  provider_id = "emailLink"
-  enabled    = true
-}
-
-resource "google_identity_platform_project_default_config" "default_config" {
+resource "google_identity_platform_config" "default" {
   project = var.project_id
 
   sign_in {
+    allow_duplicate_emails = false
+
     email {
       enabled = true
       password {
@@ -30,8 +25,8 @@ resource "google_identity_platform_project_default_config" "default_config" {
   }
 
   user_management {
-    allow_sign_up = true
-    allow_delete  = true
+    allow_user_delete = true
+    allow_user_sign_up = true
   }
 
   linking {
